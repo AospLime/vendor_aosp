@@ -13,37 +13,25 @@
 # limitations under the License.
 
 # Versioning System
-MAGMA_CODENAME = Moonshine
+LIME_VERSION = 2.1
 
-TARGET_PRODUCT_SHORT := $(subst magma_,,$(MAGMA_BUILD_TYPE))
+TARGET_PRODUCT_SHORT := $(subst lime_,,$(LIME_BUILD_TYPE))
 
-ifndef MAGMA_BUILD_TYPE
-    MAGMA_BUILD_TYPE := UNOFFICIAL
-endif
-
-# Only include Updater for official, weeklies, and nightly builds
-ifeq ($(filter-out OFFICIAL WEEKLIES NIGHTLY,$(MAGMA_BUILD_TYPE)),)
-    PRODUCT_PACKAGES += \
-        Updater
-endif
-
-# Sign builds if building an official, weekly and nightly build
-ifeq ($(filter-out OFFICIAL WEEKLIES NIGHTLY,$(MAGMA_BUILD_TYPE)),)
-    PRODUCT_DEFAULT_DEV_CERTIFICATE := $(KEYS_LOCATION)
+ifndef LIME_BUILD_TYPE
+    LIME_BUILD_TYPE := UNOFFICIAL
 endif
 
 # Set all versions
 BUILD_DATE := $(shell date -u +%Y%m%d)
 BUILD_TIME := $(shell date -u +%H%M)
-MAGMA_BUILD_VERSION := $(MAGMA_CODENAME)
-MAGMA_VERSION := $(MAGMA_BUILD_VERSION)-$(MAGMA_BUILD_TYPE)-$(MAGMA_BUILD)-$(BUILD_DATE)
-ROM_FINGERPRINT := Magma/$(PLATFORM_VERSION)/$(TARGET_PRODUCT_SHORT)/$(BUILD_TIME)
+LIME_BUILD_VERSION := AospLime_$(LIME_VERSION_NUMBER)-$(LIME_BUILD)-$(LIME_BUILD_DATE)-$(LIME_BUILD_TYPE)
+ROM_FINGERPRINT := AospLime/$(PLATFORM_VERSION)/$(TARGET_PRODUCT_SHORT)/$(BUILD_TIME)
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-  ro.magma.build.version=$(MAGMA_BUILD_VERSION) \
-  ro.magma.build.date=$(BUILD_DATE) \
-  ro.magma.buildtype=$(MAGMA_BUILD_TYPE) \
-  ro.magma.fingerprint=$(ROM_FINGERPRINT) \
-  ro.magma.version=$(MAGMA_VERSION) \
-  ro.magma.device=$(MAGMA_BUILD) \
-  ro.modversion=$(MAGMA_VERSION)
+  ro.lime.build.version=$(LIME_VERSION_NUMBER) \
+  ro.lime.build.date=$(BUILD_DATE) \
+  ro.lime.buildtype=$(LIME_BUILD_TYPE) \
+  ro.lime.fingerprint=$(ROM_FINGERPRINT) \
+  ro.lime.version=$(LIME_VERSION) \
+  ro.lime.device=$(LIME_BUILD) \
+  ro.modversion=$(LIME_VERSION)

@@ -1,4 +1,4 @@
-PRODUCT_BRAND ?= Magma
+PRODUCT_BRAND ?= AospLime
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -24,25 +24,24 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/magma/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/magma/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/magma/prebuilt/common/bin/50-base.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-base.sh
+    vendor/lime/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/lime/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/lime/prebuilt/common/bin/50-base.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-base.sh
 
 ifneq ($(AB_OTA_PARTITIONS),)
 PRODUCT_COPY_FILES += \
-    vendor/magma/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/magma/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/magma/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/lime/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/lime/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/lime/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 endif
 
 # Common overlay
-PRODUCT_PACKAGE_OVERLAYS += vendor/magma/overlay/common
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/magma/overlay/common
+PRODUCT_PACKAGE_OVERLAYS += vendor/lime/overlay/common
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/lime/overlay/common
 
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI \
-    Launcher3QuickStep
+    SystemUI 
 
 # Don't compile SystemUITests
 EXCLUDE_SYSTEMUI_TESTS := true
@@ -57,9 +56,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    vendor/magma/config/permissions/magma-power-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/magma-power-whitelist.xml \
-    vendor/magma/config/permissions/privapp-permissions-magma-system.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-magma.xml \
-    vendor/magma/config/permissions/privapp-permissions-magma-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-magma.xml
+    vendor/lime/config/permissions/lime-power-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/lime-power-whitelist.xml \
+    vendor/lime/config/permissions/privapp-permissions-lime-system.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-lime.xml \
+    vendor/lime/config/permissions/privapp-permissions-lime-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-lime.xml
 
 # Set custom volume steps
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -86,12 +85,26 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
     SELINUX_IGNORE_NEVERALLOWS := true
 endif
 
-# Bootanimation
-PRODUCT_PACKAGES += \
-    bootanimation.zip
-
-# Packages
-include vendor/magma/config/packages.mk
-
 # Versioning
-include vendor/magma/config/version.mk
+include vendor/lime/config/version.mk
+
+# LimeUI
+include vendor/limeui/config.mk
+
+# Sensitive Phone Numbers list
+PRODUCT_COPY_FILES += \
+    vendor/lime/prebuilt/common/etc/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
+
+# World APN list
+PRODUCT_PACKAGES += \
+    apns-conf.xml
+
+# Telephony packages
+PRODUCT_PACKAGES += \
+    CellBroadcastReceiver \
+    Stk
+
+# Messaging
+ifneq ($(EXCLUDE_MESSAGING_APP),true)
+PRODUCT_PACKAGES += messaging
+endif

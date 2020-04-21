@@ -1,14 +1,14 @@
 bootstrap_go_package {
-    name: "soong-magma",
-    pkgPath: "magma/soong/android",
+    name: "soong-lime",
+    pkgPath: "lime/soong/android",
     srcs: [
         "android/variable.go",
     ],
 }
 
 bootstrap_go_package {
-    name: "soong-magma-generator",
-    pkgPath: "magma/soong/generator",
+    name: "soong-lime-generator",
+    pkgPath: "lime/soong/generator",
     deps: [
         "blueprint",
         "blueprint-pathtools",
@@ -23,7 +23,7 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
-magma_generator {
+lime_generator {
     name: "generated_kernel_includes",
 
     // The headers make command
