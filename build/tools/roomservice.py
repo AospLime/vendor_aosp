@@ -34,8 +34,8 @@ default_manifest = ".repo/manifest.xml"
 custom_local_manifest = ".repo/local_manifests/lime_manifest.xml"
 custom_default_revision = "ten"
 custom_dependencies = "lime.dependencies"
-org_manifest = "devices"  # leave empty if org is provided in manifest
-org_display = "LimeDevices"  # needed for displaying
+org_manifest = "lime-devices"  # leave empty if org is provided in manifest
+org_display = "AospLime-Devices"  # needed for displaying
 
 github_auth = None
 
