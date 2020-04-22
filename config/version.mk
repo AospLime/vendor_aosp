@@ -24,11 +24,12 @@ endif
 # Set all versions
 BUILD_DATE := $(shell date -u +%Y%m%d)
 BUILD_TIME := $(shell date -u +%H%M)
-LIME_BUILD_VERSION := AospLime_$(LIME_VERSION_NUMBER)-$(LIME_BUILD)-$(LIME_BUILD_DATE)-$(LIME_BUILD_TYPE)
+LIME_BUILD_DATE := $(BUILD_DATE)-$(BUILD_TIME)
+LIME_BUILD_VERSION := AospLime_$(LIME_VERSION)-$(LIME_BUILD)-$(LIME_BUILD_DATE)-$(LIME_BUILD_TYPE)
 ROM_FINGERPRINT := AospLime/$(PLATFORM_VERSION)/$(TARGET_PRODUCT_SHORT)/$(BUILD_TIME)
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-  ro.lime.build.version=$(LIME_VERSION_NUMBER) \
+  ro.lime.build.version=$(LIME_VERSION) \
   ro.lime.build.date=$(BUILD_DATE) \
   ro.lime.buildtype=$(LIME_BUILD_TYPE) \
   ro.lime.fingerprint=$(ROM_FINGERPRINT) \
