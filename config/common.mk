@@ -91,6 +91,9 @@ include vendor/lime/config/version.mk
 # LimeUI
 include vendor/limeui/config.mk
 
+# LimeThemes
+include vendor/themes/config.mk
+
 # Sensitive Phone Numbers list
 PRODUCT_COPY_FILES += \
     vendor/lime/prebuilt/common/etc/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
