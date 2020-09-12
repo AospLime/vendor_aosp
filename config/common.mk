@@ -156,6 +156,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_PACKAGES_DEBUG += \
     procmem
 
+# Signapk
+PRODUCT_HOST_PACKAGES += \
+    signapk
+
 # Root
 PRODUCT_PACKAGES += \
     adb_root
