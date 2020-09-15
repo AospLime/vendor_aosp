@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, vendor/lineage/config/common_mobile.mk)
+$(call inherit-product, vendor/lime/config/common_mobile.mk)
 
 PRODUCT_COPY_FILES += \
     device/generic/goldfish/data/etc/permissions/privapp-permissions-goldfish.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-goldfish.xml \
@@ -20,5 +20,5 @@ PRODUCT_COPY_FILES += \
 # Allow building otatools
 TARGET_FORCE_OTA_PACKAGE := true
 
-PRODUCT_SDK_ADDON_NAME := lineage
+PRODUCT_SDK_ADDON_NAME := lime
 PRODUCT_SDK_ADDON_SYS_IMG_SOURCE_PROP := $(LOCAL_PATH)/source.properties

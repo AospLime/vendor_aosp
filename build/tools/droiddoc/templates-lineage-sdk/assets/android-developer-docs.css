@@ -326,7 +326,7 @@ blockquote {
 
 /* MAIN BODY */
 
-#mainBodyFluid {
+#mainBodyLime {
   margin: 20px 10px;
   color:#333;
 }
@@ -339,7 +339,7 @@ blockquote {
 }
 
 #mainBodyFixed h3,
-#mainBodyFluid h3 {
+#mainBodyLime h3 {
   color:#336666;
   font-size:1.25em;
   margin: 0em 0em 0em 0em;
@@ -347,7 +347,7 @@ blockquote {
 }
 
 #mainBodyFixed h2,
-#mainBodyFluid h2 {
+#mainBodyLime h2 {
   color:#336666;
   font-size:1.25em;
   margin: 0;
@@ -355,14 +355,14 @@ blockquote {
 }
 
 #mainBodyFixed h1,
-#mainBodyFluid h1 {
+#mainBodyLime h1 {
   color:#435A6E;
   font-size:1.7em;
   margin: 1em 0;
 }
 
 #mainBodyFixed .green,
-#mainBodyFluid .green,
+#mainBodyLime .green,
 #jd-content .green {
   color:#7BB026;
   background-color:none;
